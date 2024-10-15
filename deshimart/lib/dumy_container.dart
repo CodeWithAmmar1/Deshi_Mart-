@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Itemcontainer extends StatelessWidget {
+class DumyContainer extends StatelessWidget {
   final num price;
   final String weight;
   final int quantity;
   final String title;
-  final NetworkImage image;
-  const Itemcontainer(
+  final AssetImage image;
+  const DumyContainer(
       {super.key,
       required this.price,
       required this.quantity,

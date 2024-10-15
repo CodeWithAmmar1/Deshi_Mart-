@@ -1,14 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deshimart/bestselling.dart';
 import 'package:deshimart/category_container.dart';
 import 'package:deshimart/data.dart';
+import 'package:deshimart/dumy_container.dart';
 import 'package:deshimart/itemcontainer.dart';
 import 'package:deshimart/productview.dart';
 import 'package:deshimart/profile.dart';
 import 'package:flutter/material.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,26 +95,53 @@ class Homescreen extends StatelessWidget {
                 ),
               ],
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Productview()));
-              },
-              child: Container(
-                height: 278,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Itemcontainer(
-                      price: 4.99,
-                      quantity: 7,
-                      weight: "pcs",
-                      title: "Organic Banana",
-                      image: AssetImage("assets/login/banana.png"),
+            Container(
+              height: 278,
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection('data').snapshots(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    final dataList = snapshot.data!.docs;
+
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: dataList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Productview(
+                                    title: dataList[index]['title'],
+                                    price: dataList[index]['price'],
+                                    quantity: dataList[index]['quantity'],
+                                    weight: dataList[index]['weight'],
+                                    image:
+                                        NetworkImage(dataList[index]['image'])),
+                              ),
+                            );
+                          },
+                          child: Itemcontainer(
+                              price: dataList[index]['price'],
+                              quantity: dataList[index]['quantity'],
+                              weight: dataList[index]['weight'],
+                              title: dataList[index]['title'],
+                              image: NetworkImage(dataList[index]['image'])),
+                        );
+                      },
                     );
-                  },
-                ),
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Text("waiting");
+                  } else if (snapshot.hasError) {
+                    return Text("Error is here");
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
               ),
             ),
             Row(
@@ -138,7 +172,7 @@ class Homescreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: itemsData.name.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Itemcontainer(
+                  return DumyContainer(
                     price: 4.99,
                     quantity: 7,
                     weight: "pcs",
@@ -190,7 +224,7 @@ class Homescreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: Data.name.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Itemcontainer(
+                  return DumyContainer(
                     price: 15.99,
                     quantity: 1,
                     weight: "kg",

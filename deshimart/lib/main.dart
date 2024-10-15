@@ -1,16 +1,13 @@
-import 'package:deshimart/bottom_navigation.dart';
-import 'package:deshimart/cart.dart';
-import 'package:deshimart/homescreen.dart';
-import 'package:deshimart/login.dart';
-import 'package:deshimart/orderplace.dart';
-import 'package:deshimart/productview.dart';
-import 'package:deshimart/profile.dart';
-import 'package:deshimart/signup.dart';
+import 'package:deshimart/firebase_options.dart';
+
 import 'package:deshimart/splash.dart';
-import 'package:deshimart/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 

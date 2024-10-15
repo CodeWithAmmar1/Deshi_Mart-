@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class itemsData {
   static List assetImage = [
     "assets/best selling/b1.png",
@@ -28,3 +30,21 @@ class itemsData {
     "Mayonnais Eggless",
   ];
 }
+
+class CartModel {
+  final String title;
+  final NetworkImage image;
+  final num price;
+  final String weight;
+  int count;
+
+  CartModel(
+      {required this.image,
+      required this.price,
+      required this.title,
+      required this.weight,
+      required this.count});
+}
+
+List<CartModel> cartData = [];
+List<CartModel> fvrtData = [];

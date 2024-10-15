@@ -1,18 +1,27 @@
 import 'package:deshimart/cart.dart';
+import 'package:deshimart/favorite.dart';
 import 'package:deshimart/homescreen.dart';
 import 'package:deshimart/profile.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+  final int initialIndex;
+  const BottomNavigation({Key? key, this.initialIndex = 0}) : super(key: key);
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int currentindex = 0;
-  final screens = [Homescreen(), Cart(), Cart(), Profile()];
+  late int currentindex;
+
+  @override
+  void initState() {
+    super.initState();
+    currentindex = widget.initialIndex;
+  }
+
+  final screens = [Homescreen(), Cart(), Favorite(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

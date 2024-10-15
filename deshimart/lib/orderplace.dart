@@ -1,10 +1,17 @@
+import 'package:deshimart/bestselling.dart';
+import 'package:deshimart/bottom_navigation.dart';
 import 'package:deshimart/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class Orderplace extends StatelessWidget {
+class Orderplace extends StatefulWidget {
   const Orderplace({super.key});
 
+  @override
+  State<Orderplace> createState() => _OrderplaceState();
+}
+
+class _OrderplaceState extends State<Orderplace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +21,7 @@ class Orderplace extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(top: 20),
               child: Lottie.asset("assets/animation/animation.json",
-                  fit: BoxFit.contain, repeat: false, reverse: false),
+                  fit: BoxFit.contain, repeat: true, reverse: false),
             ),
           ),
           Container(
@@ -37,8 +44,13 @@ class Orderplace extends StatelessWidget {
               height: 67,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Homescreen()));
+                  setState(() {
+                    cartData.clear();
+                  });
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BottomNavigation()));
                 },
                 child: Text(
                   "Back to home",
