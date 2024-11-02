@@ -1,3 +1,4 @@
+import 'package:deshimart/bottom_navigation.dart';
 import 'package:deshimart/firebase_options.dart';
 
 import 'package:deshimart/splash.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: BottomNavigation(),
     );
   }
 }
