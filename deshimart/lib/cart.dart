@@ -35,9 +35,12 @@ class _CartState extends State<Cart> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: 10,
+            ),
             Center(
               child: Container(
-                margin: EdgeInsets.all(30),
+                margin: EdgeInsets.all(20),
                 child: Text(
                   "My Cart",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -52,7 +55,7 @@ class _CartState extends State<Cart> {
               ),
             ),
             SizedBox(
-              height: 620,
+              height: 480,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: cartData.length,

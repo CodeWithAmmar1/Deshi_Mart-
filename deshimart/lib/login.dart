@@ -143,9 +143,11 @@ class _LoginState extends State<Login> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 374,
+              height: 250,
               width: 413,
-              child: Image.asset("assets/login/Mask Group.png"),
+              child: Image.asset(
+                "assets/login/Mask Group.png",
+              ),
             ),
             Container(
               margin: EdgeInsets.only(left: 30, top: 10),

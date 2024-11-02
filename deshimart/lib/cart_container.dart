@@ -29,7 +29,7 @@ class _CartContainerState extends State<CartContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 403,
+      width: 300,
       height: 180,
       decoration: BoxDecoration(
         border: Border(
@@ -46,8 +46,8 @@ class _CartContainerState extends State<CartContainer> {
                 width: 90,
                 height: 90,
                 decoration: BoxDecoration(
-                  image:
-                      DecorationImage(image: widget.image1, fit: BoxFit.cover),
+                  image: DecorationImage(
+                      image: widget.image1, fit: BoxFit.contain),
                 ),
               ),
             ],
@@ -125,35 +125,27 @@ class _CartContainerState extends State<CartContainer> {
               ),
             ],
           ),
-          Container(
-            width: 100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: widget.onTapCancel,
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Icon(
-                      Icons.cancel_outlined,
-                      size: 40,
-                      color: Color(0xffB3B3B3),
-                    ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: widget.onTapCancel,
+                child: Container(
+                  child: Icon(
+                    Icons.cancel_outlined,
+                    size: 40,
+                    color: Color(0xffB3B3B3),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                  child: Text(
-                    "\$${widget.price1}",
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
+              ),
+              Container(
+                child: Text(
+                  "\$${widget.price1}",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

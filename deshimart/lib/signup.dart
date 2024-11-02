@@ -107,7 +107,7 @@ class _SignupState extends State<Signup> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 364,
+              height: 200,
               width: 413,
               child: Image.asset(
                 "assets/login/Mask Group.png",
